@@ -2,14 +2,14 @@
 
 ### Working with files locally
 
-###### Recursively delete all empty (sub-)directories
+#### Recursively delete all empty (sub-)directories
 Usage:
 ```Bash
 find . -type d -empty -delete
 ```
 using ` -print` will also print the deleted directories
 
-###### Find total size of all files within a specific size range
+#### Find total size of all files within a specific size range
 
 Tip: use `tail -1` to get the last line, otherwise all lines/files with their sizes will be printed plus the last (total) one.
 
@@ -21,11 +21,11 @@ Output (in bytes):
 ```Bash
 53962064	total
 ```
-######  ... and the number of files within a size range
+####  ... and the number of files within a size range
 ```Bash
 find . -maxdepth 1 -size +22M -size -100M | wc -l
 ```
-###### ... move them to a directory (or do something else) using a loop
+#### ... move them to a directory (or do something else) using a loop
 As script:
 
 ```Bash
@@ -45,21 +45,21 @@ Ass one-liner:
 find . -maxdepth 1 -size +22M -size -100M | while read file; do mv "$file" filesBetween21and100/; done
 ```
 
-###### Copy all files with a specific ending to a target directory
+#### Copy all files with a specific ending to a target directory
 ```Bash
 find . -name \*.sh -exec cp {} bashScripte/ \;
 ```
 ### Transferring files between systems
 
-###### Copy a directory to another system (here ...1.8 is the target system)
+#### Copy a directory to another system (here ...1.8 is the target system)
 ```Bash
 scp -r filesBetween21and100/ bonjeano@192.168.1.8:/home/bonjeano/pdfsToShrink
 ```
-###### Copy a file from a remote server to the local system
+#### Copy a file from a remote server to the local system
 ```Bash
 scp root@myServerIp:/path/to/file.sh /home/bonjeano/Desktop/
 ```
-###### Wait for incoming files and then then process them, otherwise sleep.
+#### Wait for incoming files and then then process them, otherwise sleep.
 In this example a server acts as a processor for pdfs files:
 ```Bash
 !/bin/bash
@@ -87,7 +87,7 @@ done
 ```
 ### Misc
 
-###### Get space available in partition in this directory
+#### Get space available in partition in this directory
 General:
 ```Bash
 df -k .
