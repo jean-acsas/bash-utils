@@ -32,11 +32,11 @@ As script:
 #!/bin/bash
 find . -maxdepth 1 -size +22M -size +100M | while read file; do
 
-# here we are compressing a pdf
-gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -sOutputFile=compressed/"$file" "$file"
+  # here we are compressing a pdf
+  gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -sOutputFile=compressed/"$file" "$file"
 
-# here we are copying
-cp someDir/"$file" someDir/..
+  # here we are copying
+  cp someDir/"$file" someDir/..
 
 done
 ```
@@ -49,9 +49,18 @@ find . -maxdepth 1 -size +22M -size -100M | while read file; do mv "$file" files
 ```Bash
 find . -name \*.sh -exec cp {} bashScripte/ \;
 ```
+#### Copy all files with a size lesser than x to a target directory
+Here, x is 100 MB:
+```Bash
+#!/bin/bash
+find . -maxdepth 1 -size -100M | while read file; do
+  cp "$file" /my/target/dir/
+done
+```
+
 #### Apply a file-extension filter when copying files from a source to a target directory
 
-Here we're using `rsync` to copy only a specific set of files (those with a specific file-extension). Similar logic can also be implemented using `find`. Use the flag `-name` with preceding `-and`, `-or` or `-not`. 
+Here we're using `rsync` to copy only a specific set of files (those with a specific file-extension). Similar logic can also be implemented using `find`. Use the flag `-name` with preceding `-and`, `-or` or `-not`.
 
 Video files:
 ```Bash
@@ -124,7 +133,12 @@ done
 
 ### Misc
 
-#### Get space available in partition in this directory
+#### Start scripts headless
+The terminal can be closed afterwards.
+```Bash
+screen sh myscript.sh -myoption &
+```
+#### Get the available space of the partition where directory is located
 General:
 ```Bash
 df -k .
