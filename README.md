@@ -49,6 +49,30 @@ find . -maxdepth 1 -size +22M -size -100M | while read file; do mv "$file" files
 ```Bash
 find . -name \*.sh -exec cp {} bashScripte/ \;
 ```
+#### Apply a file-extension filter when copying files from a source to a target directory
+
+Here we're using `rsync` to copy only a specific set of files (those with a specific file-extension). Similar logic can also be implemented using `find`. Use the flag `-name` with preceding `-and`, `-or` or `-not`. 
+
+Video files:
+```Bash
+rsync -rv --include '*/' --include '*.webm' --include '*.mkv' --include '*.flv' --include '*.vob'  --include '*.ogv' --include '*.ogg' --include '*.drc' --include '*.mng'  --include '*.avi' --include '*.wmv' --include '*.yuv' --include '*.mov' --include '*.qt' --include '*.rm'  --include '*.mvb' --include '*.asf'  --include '*.amv'  --include '*.mp4'  --include '*.m4p'  --include '*.m4v' --include '*.mpg'  --include '*.mp2'  --include '*.mpeg'  --include '*.mpe'  --include '*.m2v'  --include '*.m4v' --include '*.svi'  --include '*.3gp' --include '*.3g2' --include '*.mxf' --include '*.roq'  --include '*.nsv'  --include '*.f4v'  --include '*.f4p'  --include '*.f4a'  --include '*.f4b' --exclude '*' targetDir sourceDir
+```
+
+Gifs:
+```Bash
+rsync -rv --include '*/' --include '*.gif' --include '*.gifv' --exclude '*' targetDir sourceDir
+```
+
+Books:
+```Bash
+rsync -rv --include '*/' --include '*.pdf' --include '*.ps' --include '*.djvu' --include '*.epub' --include '*.mobi' --exclude '*' targetDir sourceDir/
+```
+
+Other documents:
+```Bash
+rsync -rv --include '*/' --include '*.txt' --include '*.html' --include '*.htm' --include '*.doc' --include '*.docx' --include '*.ppt'  --include '*.ods'  --include '*.odt'  --include '*.rdf'  --include '*.xml'  --exclude '*' targetDir sourceDir
+```
+
 ### Transferring files between systems
 
 #### Copy a directory to another system (here ...1.8 is the target system)
