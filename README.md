@@ -85,6 +85,19 @@ while : ; do
   fi
 done
 ```
+### Working with variables
+Example: fetch 8000 indexed .mp3s from some remote location and store locally.
+```Bash
+#!/bin/bash
+start=1
+end=8000
+for ((i=start; i<=end; i++))
+do
+ wget "https://some.page.com/api/audiofiles?language=EN&some_id=""$i""&some_api_token=xyz" -O "$i"".mp3"
+done
+```
+
+
 ### Misc
 
 #### Get space available in partition in this directory
