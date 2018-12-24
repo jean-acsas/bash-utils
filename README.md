@@ -150,8 +150,6 @@ Filesystem     1K-blocks    Used Available Use% Mounted
 ```
 #### Open a list of URLs from a file as browser tabs 
 ```Bash
-!/bin/bash
-
 while read line; do
     firefox --new-tab "$line"
 done < mylinks.txt
