@@ -130,7 +130,6 @@ do
 done
 ```
 
-
 ### Misc
 
 #### Start scripts headless
@@ -148,4 +147,18 @@ example:
 df -k .
 Filesystem     1K-blocks    Used Available Use% Mounted
 /dev/sda3       62331644 6372644  52762944  11% /
+```
+#### Open a list of URLs from a file as browser tabs 
+```Bash
+!/bin/bash
+
+while read line; do
+    firefox --new-tab "$line"
+done < mylinks.txt
+```
+
+for Chrome use:
+
+```Bash
+google-chrome "$line"
 ```
