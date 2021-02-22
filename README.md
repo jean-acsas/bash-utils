@@ -58,6 +58,15 @@ find . -maxdepth 1 -size -100M | while read file; do
 done
 ```
 
+#### Batch rename files 
+```Bash
+# Rename all *.html to *.txt
+for file in *.html
+do
+  mv "$file" "${file%.html}.txt"
+done
+```
+
 #### Apply a file-extension filter when copying files from a source to a target directory
 
 Here we're using `rsync` to copy only a specific set of files (those with a specific file-extension). Similar logic can also be implemented using `find`. Use the flag `-name` with preceding `-and`, `-or` or `-not`.
